@@ -1,12 +1,11 @@
 # PHP Authentication System
 
-This PHP Authentication System allows users to register, log in, and log out securely. 
+-This PHP Authentication System allows users to register, log in, and log out securely. 
 
-## Features
+-It uses a MySQL database to store user credentials and employs secure password handling with password_hash and password_verify. 
 
-- **User Registration & Login:** Users can register and log in with username, email, and password. Input is validated, and passwords are securely hashed.
-- **Prepared Statements:** Used to prevent SQL injection during registration and login.
-- **Session Management:** PHP sessions are used to manage logged-in users.
-- **Error Handling:** Displays error messages for invalid input, duplicate email, or incorrect credentials.
-- **Logout Feature:** Users can log out, destroying their session.
-- **Security:** Includes password hashing and input sanitization to protect user data.
+-Prepared statements are used to prevent SQL injection, and basic input validation is implemented for username, email, and password fields. 
+
+-The system also manages user sessions to keep users logged in after authentication and users can log out, destroying their session.
+
+
