@@ -24,15 +24,23 @@ h3 {
     color: #333;
 }
 
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 form label {
     display: block;
     margin-bottom: 8px;
     text-align: left;
     color: #555;
+    align-self: flex-start;
 }
 
 form input {
-    width: 90%;
+    width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
@@ -55,8 +63,9 @@ form button:hover {
     background-color: #131212;
 }
 
-.error-message {
+.error-text {
+    width: 100%;
     color: red;
     font-size: 14px;
-    margin-bottom: 15px;
+    text-align: left;
 }
