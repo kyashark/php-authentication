@@ -27,11 +27,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $errors[] = "Invalid email address.";
     }
     else{
-        $stmt = "SELECT * FROM users WHERE email= '$email'";
-        $stmt_result = $connection -> query($stmt);
+        // Check if email already exists using a prepared statement
+        $stmt = $connection->prepare("SELECT * FROM users WHERE email= ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt_result = $stmt->get_result();
         if($stmt_result->num_rows > 0){
             $errors[]="This email is already use.";
         }
+        $stmt->close();
     }
 
     // Validate password
@@ -57,12 +61,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         // hash the password
         $hashed_password = password_hash($password,PASSWORD_DEFAULT);
 
-        // Store user in database
-        $sql = "INSERT INTO users (username,email,password) VALUES ('$username','$email','$hashed_password')";
-
-        // Execute the query
-        $result = $connection -> query($sql);
-
+        $stmt = $connection->prepare("INSERT INTO users (username,email,password) VALUES (?,?,?)");
+        $stmt->bind_param("sss",$username,$email,$hashed_password);
+        $result = $stmt->execute();
+    
         // Check for errors
         if($result === TRUE){
             echo "<script>alert('Registration successful');</script>";
@@ -71,6 +73,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         else{
             $error_message = "Error: " . $sql . "<br>" . $connection->error;
         } 
+        $stmt->close();
 }
 
 }

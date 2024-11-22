@@ -26,8 +26,11 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
     }
 
     else{
-        $sql = "SELECT * FROM users WHERE username ='$username'";
-        $result = $connection -> query($sql);
+        $stmt = $connection->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->bind_param("s",$username);
+        $stmt->execute();
+        
+        $result = $stmt->get_result();
 
         if($result -> num_rows > 0){
             $user = $result->fetch_assoc();
@@ -41,7 +44,8 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
             else{
                 // Incorrect password
                 $error_message = "Invalid username or password.";
-            }   
+            } 
+        $stmt->close();  
     }
     else {
         // Username not found
