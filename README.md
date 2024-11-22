@@ -13,6 +13,6 @@ This PHP Authentication System allows users to register, log in, and log out sec
 
 ## Technologies Used
 
-- PHP
-- MySQL
-- HTML, CSS
+PHP
+MySQL
+HTML, CSS
