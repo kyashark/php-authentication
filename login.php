@@ -32,7 +32,8 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
         if($result -> num_rows > 0){
             $user = $result->fetch_assoc();
 
-            if($password === $user['password']){
+            // Verify password using password_verify() 
+            if(password_verify($password,$user['password'])){
                 $_SESSION['username'] = $user['username'];
                 echo "<script>alert('Login successful!');</script>";
                 echo "<script>window.location.href = 'home.php';</script>";

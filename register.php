@@ -53,8 +53,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $error_message = implode("<br>",$errors);
     }
     else{
+
+        // hash the password
+        $hashed_password = password_hash($password,PASSWORD_DEFAULT);
+
         // Store user in database
-        $sql = "INSERT INTO users (username,email,password) VALUES ('$username','$email','$password')";
+        $sql = "INSERT INTO users (username,email,password) VALUES ('$username','$email','$hashed_password')";
 
         // Execute the query
         $result = $connection -> query($sql);
