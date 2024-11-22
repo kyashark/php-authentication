@@ -10,9 +10,3 @@ This PHP Authentication System allows users to register, log in, and log out sec
 - **Error Handling:** Displays error messages for invalid input, duplicate email, or incorrect credentials.
 - **Logout Feature:** Users can log out, destroying their session.
 - **Security:** Includes password hashing and input sanitization to protect user data.
-
-## Technologies Used
-
-PHP
-MySQL
-HTML, CSS
