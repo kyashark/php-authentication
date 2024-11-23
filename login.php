@@ -80,7 +80,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
 
             <button type="submit">Login</button>
         </form>
-        <h5>You didn't have an Account ? <a href="register.php">Register<a></h5>
+        <h5>You didn't have an account ? <a href="register.php">Register<a></h5>
     </div>
 </body>
 </html>

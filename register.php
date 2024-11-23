@@ -102,9 +102,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
 
-            <p class='error-text'>
+            <span class='error-text'>
                 <?php if (!empty($error_message)) echo $error_message; ?>
-            </p>
+            </span>
 
             <button type="submit">Register</button>
         </form>
