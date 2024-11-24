@@ -61,8 +61,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         // hash the password
         $hashed_password = password_hash($password,PASSWORD_DEFAULT);
 
-        $stmt = $connection->prepare("INSERT INTO users (username,email,password) VALUES (?,?,?)");
-        $stmt->bind_param("sss",$username,$email,$hashed_password);
+        // Set is_admin to 0 for normal users by default (for admin, set it to 1 manually)
+        $is_admin = 1 ;
+
+        $stmt = $connection->prepare("INSERT INTO users (username,email,password,is_admin) VALUES (?,?,?,?)");
+        $stmt->bind_param("sssi",$username,$email,$hashed_password,$is_admin);
         $result = $stmt->execute();
     
         // Check for errors

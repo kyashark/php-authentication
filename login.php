@@ -38,21 +38,30 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
             // Verify password using password_verify() 
             if(password_verify($password,$user['password'])){
                 $_SESSION['username'] = $user['username'];
+                $_SESSION['is_admin'] = $user['is_admin'];
+
                 echo "<script>alert('Login successful!');</script>";
-                echo "<script>window.location.href = 'home.php';</script>";
-            }
+
+                if($_SESSION['is_admin'] == 1){
+                    echo "<script>window.location.href = 'admin_dashboard.php';</script>";
+                }
+                else{
+                    echo "<script>window.location.href = 'home.php';</script>";
+                }           
+    }
             else{
                 // Incorrect password
                 $error_message = "Invalid username or password.";
-            } 
-        $stmt->close();  
+            }   
     }
     else {
         // Username not found
         $error_message = "Invalid username or password.";
     }
+    $stmt->close();
 }
 }
+
    
 ?>
 
